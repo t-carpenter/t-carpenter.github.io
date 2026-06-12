@@ -22,154 +22,7 @@
     </div>
   </header>
 
-  <main class="work">
-
-    <!-- Moment 1: two images, left-offset, no overlap -->
-    <div class="moment reveal-item">
-      <div class="moment-inner" style="position:relative; height: 280px;">
-        <img
-          src="images/stocksy-2025.avif"
-          alt="stocksy-2025"
-          loading="lazy"
-          style="position:absolute; left:0; top:0; width:38%; height:380px; object-fit:cover;"
-        >
-        <video
-          autoplay
-          loop
-          muted
-          playsinline
-          loading="lazy"
-          style="position:absolute; left:42%; top:110px; width:210px; height:210px; object-fit:cover;"
-        >
-      <source src="images/galileo-logo-spin.mp4" type="video/mp4">
-</video>
-    </div>
-
-    <!-- Moment 2: large right-aligned image with caption -->
-    <div class="moment reveal-item">
-      <div style="margin-left:28%; width:72%;">
-        <img
-          src="images/project-02.jpg"
-          alt="Project 02"
-          loading="lazy"
-          style="width:100%; height:360px; object-fit:cover; display:block;"
-        >
-        <p class="caption">Brief description of this project — scope, year, medium. Replace with your own text or remove entirely.</p>
-      </div>
-    </div>
-
-    <!-- Moment 3: single image, centre-left -->
-    <div class="moment reveal-item">
-      <div style="margin-left:14%; width:26%;">
-        <img
-          src="images/project-03.jpg"
-          alt="Project 03"
-          loading="lazy"
-          style="width:100%; height:220px; object-fit:cover; display:block;"
-        >
-      </div>
-    </div>
-
-    <!-- Moment 4: two equal images side by side, 4px gap -->
-    <div class="moment reveal-item">
-      <div style="margin-left:8%; width:84%; display:flex; gap:4px;">
-        <img
-          src="images/project-04a.jpg"
-          alt="Project 04"
-          loading="lazy"
-          style="flex:1; height:280px; object-fit:cover; display:block; min-width:0;"
-        >
-        <img
-          src="images/project-04b.jpg"
-          alt="Project 04 detail"
-          loading="lazy"
-          style="flex:1; height:280px; object-fit:cover; display:block; min-width:0;"
-        >
-      </div>
-    </div>
-
-    <!-- Moment 5: single large left image, no overlap -->
-    <div class="moment reveal-item">
-      <div style="margin-left:0; width:68%;">
-        <img
-          src="images/project-05.jpg"
-          alt="Project 05"
-          loading="lazy"
-          style="width:100%; height:420px; object-fit:cover; display:block;"
-        >
-        <p class="caption">Brief description of this project — scope, year, medium. Replace with your own text or remove entirely.</p>
-      </div>
-    </div>
-
-    <!-- Moment 6: small image right-aligned -->
-    <div class="moment reveal-item">
-      <div style="margin-left:auto; width:28%;">
-        <img
-          src="images/project-06.jpg"
-          alt="Project 06"
-          loading="lazy"
-          style="width:100%; height:200px; object-fit:cover; display:block;"
-        >
-      </div>
-    </div>
-
-    <!-- Moment 7: two stacked images right, touching with 4px gap -->
-    <div class="moment reveal-item">
-      <div style="margin-left:auto; width:32%; display:flex; flex-direction:column; gap:4px;">
-        <img
-          src="images/project-07a.jpg"
-          alt="Project 07"
-          loading="lazy"
-          style="width:100%; height:160px; object-fit:cover; display:block;"
-        >
-        <img
-          src="images/project-07b.jpg"
-          alt="Project 07 detail"
-          loading="lazy"
-          style="width:100%; height:140px; object-fit:cover; display:block;"
-        >
-      </div>
-    </div>
-
-    <!-- Moment 8: wide full-width image -->
-    <div class="moment reveal-item">
-      <div style="width:100%;">
-        <img
-          src="images/project-08.jpg"
-          alt="Project 08"
-          loading="lazy"
-          style="width:100%; height:300px; object-fit:cover; display:block;"
-        >
-        <p class="caption">Brief description of this project — scope, year, medium. Replace with your own text or remove entirely.</p>
-      </div>
-    </div>
-
-    <!-- Moment 9: small square left -->
-    <div class="moment reveal-item">
-      <div style="margin-left:6%; width:20%;">
-        <img
-          src="images/project-09.jpg"
-          alt="Project 09"
-          loading="lazy"
-          style="width:100%; height:180px; object-fit:cover; display:block;"
-        >
-      </div>
-    </div>
-
-    <!-- Moment 10: large right image with caption -->
-    <div class="moment reveal-item">
-      <div style="margin-left:20%; width:80%;">
-        <img
-          src="images/project-10.jpg"
-          alt="Project 10"
-          loading="lazy"
-          style="width:100%; height:480px; object-fit:cover; display:block;"
-        >
-        <p class="caption">Brief description of this project — scope, year, medium. Replace with your own text or remove entirely.</p>
-      </div>
-    </div>
-
-  </main>
+  <main class="work" id="work"></main>
 
   <footer class="footer">
     <div class="footer-left">
@@ -185,17 +38,166 @@
   </footer>
 
   <script>
-    // Fade in elements as they enter the viewport
-    const items = document.querySelectorAll('.reveal-item');
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          observer.unobserve(entry.target);
+    // ── Media list ──────────────────────────────────────────────
+    // size: 's' = 180px tall, 'm' = 320px tall, 'l' = 480px tall
+    // width is always auto — aspect ratio drives it naturally
+    const media = [
+      { file: 'checkout-loop.mp4',                  type: 'video', size: 'm' },
+      { file: 'clarie-lightning-strike-campaign.avif', type: 'image', size: 'l' },
+      { file: 'convoso.avif',                        type: 'image', size: 'm' },
+      { file: 'dotform.mp4',                         type: 'video', size: 'm' },
+      { file: 'galileo-logo-spin.mp4',               type: 'video', size: 's' },
+      { file: 'galileo-web.mp4',                     type: 'video', size: 'l' },
+      { file: 'genesis-motion-design.mp4',           type: 'video', size: 'm' },
+      { file: 'hello-yes.avif',                      type: 'image', size: 's' },
+      { file: 'joseph-jeup.avif',                    type: 'image', size: 'm' },
+      { file: 'kindness.webp',                       type: 'image', size: 'l' },
+      { file: 'morgan-stanley.avif',                 type: 'image', size: 'm' },
+      { file: 'nuon-business-cards.avif',            type: 'image', size: 's' },
+      { file: 'omada.avif',                          type: 'image', size: 'm' },
+      { file: 'rip-roar.avif',                       type: 'image', size: 'l' },
+      { file: 'rogers-design-system.avif',           type: 'image', size: 'm' },
+      { file: 'rogers-homepage-2017.webp',           type: 'image', size: 'm' },
+      { file: 'san-francisco-beautiful.webp',        type: 'image', size: 'l' },
+      { file: 'steelcase-360-magazine.webp',         type: 'image', size: 'm' },
+      { file: 'steelcase-360.mp4',                   type: 'video', size: 'l' },
+      { file: 'stocksy-2025.avif',                   type: 'image', size: 'l' },
+      { file: 'stocksy-detail-2025.webp',            type: 'image', size: 'm' },
+      { file: 'stocksy-mobile-2025.webp',            type: 'image', size: 's' },
+      { file: 'tetrate.webp',                        type: 'image', size: 'm' },
+      { file: 'tuyyo.avif',                          type: 'image', size: 's' },
+      { file: 'uica-live-coverage-2004.webp',        type: 'image', size: 'm' },
+      { file: 'uica-live-coverage-2011.webp',        type: 'image', size: 'm' },
+      { file: 'working-with-the-machine.mp4',        type: 'video', size: 'l' },
+    ];
+
+    // ── Height map ──────────────────────────────────────────────
+    const heights = { s: 180, m: 320, l: 480 };
+
+    // ── Left offset positions (as % of container) ───────────────
+    // A curated set — feels composed, not purely random
+    const offsets = [0, 8, 18, 28, 40, 52, 62];
+
+    // ── Vertical gap between moments (px) ───────────────────────
+    const gapMin = 100;
+    const gapMax = 200;
+
+    // ── Shuffle helper ──────────────────────────────────────────
+    function shuffle(arr) {
+      const a = [...arr];
+      for (let i = a.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [a[i], a[j]] = [a[j], a[i]];
+      }
+      return a;
+    }
+
+    function pick(arr) {
+      return arr[Math.floor(Math.random() * arr.length)];
+    }
+
+    function randBetween(min, max) {
+      return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+
+    // ── Decide grouping: solo or pair ───────────────────────────
+    // ~30% chance of a pair, otherwise solo
+    function buildGroups(items) {
+      const groups = [];
+      let i = 0;
+      while (i < items.length) {
+        if (i + 1 < items.length && Math.random() < 0.30) {
+          groups.push({ type: 'pair', items: [items[i], items[i + 1]] });
+          i += 2;
+        } else {
+          groups.push({ type: 'solo', items: [items[i]] });
+          i++;
         }
+      }
+      return groups;
+    }
+
+    // ── Build a media element ───────────────────────────────────
+    function buildElement(item, heightPx) {
+      if (item.type === 'video') {
+        const v = document.createElement('video');
+        v.autoplay = true;
+        v.loop = true;
+        v.muted = true;
+        v.playsInline = true;
+        v.style.cssText = `height:${heightPx}px; width:auto; max-width:100%; display:block; object-fit:cover;`;
+        const s = document.createElement('source');
+        s.src = `images/${item.file}`;
+        s.type = 'video/mp4';
+        v.appendChild(s);
+        return v;
+      } else {
+        const img = document.createElement('img');
+        img.src = `images/${item.file}`;
+        img.alt = item.file.replace(/\.[^.]+$/, '').replace(/-/g, ' ');
+        img.loading = 'lazy';
+        img.style.cssText = `height:${heightPx}px; width:auto; max-width:100%; display:block; object-fit:cover;`;
+        return img;
+      }
+    }
+
+    // ── Render ──────────────────────────────────────────────────
+    function render() {
+      const work = document.getElementById('work');
+      work.innerHTML = '';
+
+      const shuffled = shuffle(media);
+      const groups = buildGroups(shuffled);
+
+      groups.forEach(group => {
+        const moment = document.createElement('div');
+        moment.className = 'moment reveal-item';
+
+        if (group.type === 'solo') {
+          const item = group.items[0];
+          const h = heights[item.size];
+          const offset = pick(offsets);
+          moment.style.paddingLeft = `${offset}%`;
+          moment.style.marginBottom = `${randBetween(gapMin, gapMax)}px`;
+          moment.appendChild(buildElement(item, h));
+
+        } else {
+          // Pair: both items share the same height (use the smaller of the two)
+          const sizes = group.items.map(i => heights[i.size]);
+          const h = Math.min(...sizes);
+          const offset = pick(offsets.filter(o => o <= 40)); // pairs stay left-ish
+          moment.style.paddingLeft = `${offset}%`;
+          moment.style.marginBottom = `${randBetween(gapMin, gapMax)}px`;
+          moment.style.display = 'flex';
+          moment.style.gap = '4px';
+          moment.style.alignItems = 'flex-start';
+          group.items.forEach(item => {
+            moment.appendChild(buildElement(item, h));
+          });
+        }
+
+        work.appendChild(moment);
       });
-    }, { threshold: 0.08 });
-    items.forEach(item => observer.observe(item));
+
+      // Trigger fade-in observer after DOM is built
+      observeItems();
+    }
+
+    // ── Scroll fade-in ──────────────────────────────────────────
+    function observeItems() {
+      const items = document.querySelectorAll('.reveal-item');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.05 });
+      items.forEach(item => observer.observe(item));
+    }
+
+    render();
   </script>
 
 </body>
