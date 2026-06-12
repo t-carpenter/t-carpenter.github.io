@@ -9,18 +9,16 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
-  <link rel="icon" type="image/png" href="favicon.png">
-  <link rel="apple-touch-icon" href="apple-touch-icon.png">
 </head>
 <body>
 
   <header class="header">
     <div class="header-name">Tim Carpenter</div>
     <div class="header-bio">
-      Tim Carpenter is an independent San Francisco-based multi-disciplinary Creative 
+      Tim Carpenter is a San Francisco-based multi-disciplinary Creative 
       Director, designer, and lecturer. With deep agency and in-house 
       experience, he is focused on branding, design systems, digital 
-      experiences, and motion design.
+      experiences, and motion design. Co-founder,&nbsp;<a href="https://hooray-co.com/">Hooray&nbsp;&amp;&nbsp;Co.</a>
     </div>
   </header>
 
@@ -40,51 +38,63 @@
   </footer>
 
   <script>
-    // ── Media list ──────────────────────────────────────────────
-    // size: 's' = 180px tall, 'm' = 320px tall, 'l' = 480px tall
-    // width is always auto — aspect ratio drives it naturally
-    const media = [
-      { file: 'checkout-loop.mp4',                  type: 'video', size: 'm' },
-      { file: 'clarie-lightning-strike-campaign.avif', type: 'image', size: 'l' },
-      { file: 'convoso.avif',                        type: 'image', size: 'm' },
-      { file: 'dotform.mp4',                         type: 'video', size: 'm' },
-      { file: 'galileo-logo-spin.mp4',               type: 'video', size: 's' },
-      { file: 'galileo-web.mp4',                     type: 'video', size: 'l' },
-      { file: 'genesis-motion-design.mp4',           type: 'video', size: 'm' },
-      { file: 'hello-yes.avif',                      type: 'image', size: 's' },
-      { file: 'joseph-jeup.avif',                    type: 'image', size: 'm' },
-      { file: 'kindness.webp',                       type: 'image', size: 'l' },
-      { file: 'morgan-stanley.avif',                 type: 'image', size: 'm' },
-      { file: 'nuon-business-cards.avif',            type: 'image', size: 's' },
-      { file: 'omada.avif',                          type: 'image', size: 'm' },
-      { file: 'rip-roar.avif',                       type: 'image', size: 'l' },
-      { file: 'rogers-design-system.avif',           type: 'image', size: 'm' },
-      { file: 'rogers-homepage-2017.webp',           type: 'image', size: 'm' },
-      { file: 'san-francisco-beautiful.webp',        type: 'image', size: 'l' },
-      { file: 'steelcase-360-magazine.webp',         type: 'image', size: 'm' },
-      { file: 'steelcase-360.mp4',                   type: 'video', size: 'l' },
-      { file: 'stocksy-2025.avif',                   type: 'image', size: 'l' },
-      { file: 'stocksy-detail-2025.webp',            type: 'image', size: 'm' },
-      { file: 'stocksy-mobile-2025.webp',            type: 'image', size: 's' },
-      { file: 'tetrate.webp',                        type: 'image', size: 'm' },
-      { file: 'tuyyo.avif',                          type: 'image', size: 's' },
-      { file: 'uica-live-coverage-2004.webp',        type: 'image', size: 'm' },
-      { file: 'uica-live-coverage-2011.webp',        type: 'image', size: 'm' },
-      { file: 'working-with-the-machine.mp4',        type: 'video', size: 'l' },
-    ];
+    // ── Aspect ratio multipliers (width = height * ratio) ───────
+    const ratios = {
+      '1:1':  1,
+      '4:5':  4/5,
+      '5:4':  5/4,
+      '16:9': 16/9,
+    };
 
-    // ── Height map ──────────────────────────────────────────────
+    // ── Height map ───────────────────────────────────────────────
     const heights = { s: 180, m: 320, l: 480 };
 
-    // ── Left offset positions (as % of container) ───────────────
-    // A curated set — feels composed, not purely random
+    // ── Media list ───────────────────────────────────────────────
+    const media = [
+      // 1:1
+      { file: 'galileo-logo-spin.mp4',            type: 'video', size: 's', aspect: '1:1' },
+      { file: 'stocksy-detail-2025.jpg',         type: 'image', size: 'm', aspect: '1:1' },
+      { file: 'working-with-the-machine.mp4',     type: 'video', size: 'l', aspect: '1:1' },
+
+      // 4:5
+      { file: 'clarie-lightning-strike-campaign.jpg', type: 'image', size: 'l', aspect: '4:5' },
+      { file: 'kindness.jpg',                    type: 'image', size: 'l', aspect: '4:5' },
+      { file: 'rogers-homepage-2017.jpg',        type: 'image', size: 'm', aspect: '4:5' },
+      { file: 'uica-live-coverage-2011.jpg',     type: 'image', size: 'm', aspect: '4:5' },
+
+      // 5:4
+      { file: 'dotform.mp4',                      type: 'video', size: 'm', aspect: '5:4' },
+      { file: 'genesis-motion-design.mp4',        type: 'video', size: 'm', aspect: '5:4' },
+      { file: 'hello-yes.jpg',                   type: 'image', size: 's', aspect: '5:4' },
+      { file: 'morgan-stanley.jpg',              type: 'image', size: 'm', aspect: '5:4' },
+      { file: 'omada.jpg',                       type: 'image', size: 'm', aspect: '5:4' },
+      { file: 'rip-roar.jpg',                    type: 'image', size: 'l', aspect: '5:4' },
+      { file: 'stocksy-2025.jpg',                type: 'image', size: 'l', aspect: '5:4' },
+      { file: 'tuyyo.jpg',                       type: 'image', size: 's', aspect: '5:4' },
+      { file: 'uica-live-coverage-2004.jpg',     type: 'image', size: 'm', aspect: '5:4' },
+
+      // 16:9
+      { file: 'checkout-loop.mp4',                type: 'video', size: 'm', aspect: '16:9' },
+      { file: 'convoso.jpg',                     type: 'image', size: 'm', aspect: '16:9' },
+      { file: 'galileo-web.mp4',                  type: 'video', size: 'l', aspect: '16:9' },
+      { file: 'joseph-jeup.jpg',                 type: 'image', size: 'm', aspect: '16:9' },
+      { file: 'nuon-business-cards.jpg',         type: 'image', size: 's', aspect: '5:4' },
+      { file: 'rogers-design-system.jpg',        type: 'image', size: 'm', aspect: '16:9' },
+      { file: 'san-francisco-beautiful.jpg',     type: 'image', size: 'l', aspect: '16:9' },
+      { file: 'steelcase-360-magazine.jpg',      type: 'image', size: 'm', aspect: '16:9' },
+      { file: 'steelcase-360.mp4',                type: 'video', size: 'l', aspect: '16:9' },
+      { file: 'stocksy-mobile-2025.jpg',         type: 'image', size: 's', aspect: '16:9' },
+      { file: 'tetrate.jpg',                     type: 'image', size: 'm', aspect: '16:9' },
+    ];
+
+    // ── Left offset positions (% of container) ──────────────────
     const offsets = [0, 8, 18, 28, 40, 52, 62];
 
     // ── Vertical gap between moments (px) ───────────────────────
     const gapMin = 100;
     const gapMax = 200;
 
-    // ── Shuffle helper ──────────────────────────────────────────
+    // ── Helpers ──────────────────────────────────────────────────
     function shuffle(arr) {
       const a = [...arr];
       for (let i = a.length - 1; i > 0; i--) {
@@ -102,8 +112,14 @@
       return Math.floor(Math.random() * (max - min + 1)) + min;
     }
 
-    // ── Decide grouping: solo or pair ───────────────────────────
-    // ~30% chance of a pair, otherwise solo
+    // Calculate pixel width from height and aspect ratio
+    function calcWidth(item) {
+      const h = heights[item.size];
+      const r = ratios[item.aspect] || 1;
+      return Math.round(h * r);
+    }
+
+    // ── Grouping: solo or pair (~30% chance) ────────────────────
     function buildGroups(items) {
       const groups = [];
       let i = 0;
@@ -119,15 +135,19 @@
       return groups;
     }
 
-    // ── Build a media element ───────────────────────────────────
-    function buildElement(item, heightPx) {
+    // ── Build a single media element ─────────────────────────────
+    function buildElement(item) {
+      const h = heights[item.size];
+      const w = calcWidth(item);
+      const styleStr = `height:${h}px; width:${w}px; display:block;`;
+
       if (item.type === 'video') {
         const v = document.createElement('video');
         v.autoplay = true;
         v.loop = true;
         v.muted = true;
         v.playsInline = true;
-        v.style.cssText = `height:${heightPx}px; width:auto; max-width:100%; display:block; object-fit:cover;`;
+        v.style.cssText = styleStr;
         const s = document.createElement('source');
         s.src = `images/${item.file}`;
         s.type = 'video/mp4';
@@ -138,12 +158,21 @@
         img.src = `images/${item.file}`;
         img.alt = item.file.replace(/\.[^.]+$/, '').replace(/-/g, ' ');
         img.loading = 'lazy';
-        img.style.cssText = `height:${heightPx}px; width:auto; max-width:100%; display:block; object-fit:cover;`;
+        img.style.cssText = styleStr;
         return img;
       }
     }
 
-    // ── Render ──────────────────────────────────────────────────
+    // ── Check if a pair would overflow the page ──────────────────
+    function pairFits(itemA, itemB, offsetPct) {
+      const containerW = document.getElementById('work').offsetWidth;
+      const availableW = containerW * (1 - offsetPct / 100);
+      const wA = calcWidth(itemA);
+      const wB = calcWidth(itemB);
+      return (wA + wB + 4) <= availableW; // 4px gap
+    }
+
+    // ── Render ───────────────────────────────────────────────────
     function render() {
       const work = document.getElementById('work');
       work.innerHTML = '';
@@ -157,40 +186,42 @@
 
         if (group.type === 'solo') {
           const item = group.items[0];
-          const h = heights[item.size];
           const offset = pick(offsets);
           moment.style.paddingLeft = `${offset}%`;
           moment.style.marginBottom = `${randBetween(gapMin, gapMax)}px`;
-          moment.appendChild(buildElement(item, h));
+          moment.appendChild(buildElement(item));
 
         } else {
-          // Pair: each item keeps its own height, aligned to top
-const offset = pick(offsets.filter(o => o <= 40));
-moment.style.paddingLeft = `${offset}%`;
-moment.style.marginBottom = `${randBetween(gapMin, gapMax)}px`;
-moment.style.display = 'flex';
-moment.style.gap = '4px';
-moment.style.alignItems = 'flex-start';
-group.items.forEach(item => {
-  const wrap = document.createElement('div');
-  wrap.style.cssText = 'flex:1; min-width:0; overflow:hidden;';
-  const el = buildElement(item, heights[item.size]);
-  el.style.width = '100%';
-  el.style.height = heights[item.size] + 'px';
-  el.style.objectFit = 'cover';
-  wrap.appendChild(el);
-  moment.appendChild(wrap);
-});
+          // Only use offsets where both images will fit without overflow
+          const safeOffsets = offsets.filter(o =>
+            pairFits(group.items[0], group.items[1], o)
+          );
+          // Fall back to solo if no safe offset exists
+          if (safeOffsets.length === 0) {
+            const item = group.items[0];
+            moment.style.paddingLeft = '0%';
+            moment.style.marginBottom = `${randBetween(gapMin, gapMax)}px`;
+            moment.appendChild(buildElement(item));
+          } else {
+            const offset = pick(safeOffsets);
+            moment.style.paddingLeft = `${offset}%`;
+            moment.style.marginBottom = `${randBetween(gapMin, gapMax)}px`;
+            moment.style.display = 'flex';
+            moment.style.gap = '4px';
+            moment.style.alignItems = 'flex-start';
+            group.items.forEach(item => {
+              moment.appendChild(buildElement(item));
+            });
+          }
         }
 
         work.appendChild(moment);
       });
 
-      // Trigger fade-in observer after DOM is built
       observeItems();
     }
 
-    // ── Scroll fade-in ──────────────────────────────────────────
+    // ── Scroll fade-in ───────────────────────────────────────────
     function observeItems() {
       const items = document.querySelectorAll('.reveal-item');
       const observer = new IntersectionObserver((entries) => {
