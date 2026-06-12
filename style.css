@@ -1,0 +1,179 @@
+/* ============================================
+   Tim Carpenter — tim-carpenter.com
+   ============================================ */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: 'Schibsted Grotesk', -apple-system, Helvetica Neue, Arial, sans-serif;
+  background: #ffffff;
+  color: #111;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 48px;
+}
+
+/* ---- Header ---- */
+
+.header {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  padding: 52px 0 128px;
+  align-items: start;
+}
+
+.header-name {
+  font-size: 22px;
+  font-weight: 400;
+  color: #111;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+}
+
+.header-bio {
+  font-size: 13px;
+  line-height: 1.45;
+  color: #333;
+}
+
+.header-bio a {
+  color: #333;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.header-bio a:hover {
+  color: #111;
+}
+
+/* ---- Work ---- */
+
+.work {
+  padding-bottom: 0;
+}
+
+.moment {
+  margin-bottom: 160px;
+}
+
+.moment img {
+  display: block;
+}
+
+/* ---- Caption ---- */
+
+.caption {
+  font-size: 13px;
+  line-height: 1.35;
+  color: #888;
+  margin-top: 10px;
+  width: 50%;
+}
+
+/* ---- Footer ---- */
+
+.footer {
+  margin-top: 120px;
+  padding: 24px 0 52px;
+  border-top: 0.5px solid #e0e0dc;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 24px;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.footer-left {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.footer-name {
+  font-weight: 500;
+  color: #111;
+}
+
+.footer-sub {
+  color: #888;
+}
+
+.footer-right {
+  grid-column: 3;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.footer-right a {
+  color: #333;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.footer-right a:hover {
+  color: #111;
+}
+
+/* ---- Scroll fade-in ---- */
+
+.reveal-item {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.reveal-item.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Respect reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .reveal-item {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* ---- Responsive ---- */
+
+@media (max-width: 640px) {
+  body {
+    padding: 0 24px;
+  }
+
+  .header {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 36px 0 80px;
+  }
+
+  .moment {
+    margin-bottom: 80px;
+  }
+
+  .caption {
+    width: 100%;
+  }
+
+  .footer {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .footer-right {
+    grid-column: 2;
+  }
+}
