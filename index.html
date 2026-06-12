@@ -164,17 +164,15 @@
           moment.appendChild(buildElement(item, h));
 
         } else {
-          // Pair: both items share the same height (use the smaller of the two)
-const sizes = group.items.map(i => heights[i.size]);
-const h = Math.min(...sizes);
-const offset = pick(offsets.filter(o => o <= 40)); // pairs stay left-ish
+          // Pair: each item keeps its own height, aligned to top
+const offset = pick(offsets.filter(o => o <= 40));
 moment.style.paddingLeft = `${offset}%`;
 moment.style.marginBottom = `${randBetween(gapMin, gapMax)}px`;
 moment.style.display = 'flex';
 moment.style.gap = '4px';
 moment.style.alignItems = 'flex-start';
 group.items.forEach(item => {
-  moment.appendChild(buildElement(item, h));
+  moment.appendChild(buildElement(item, heights[item.size]));
 });
         }
 
