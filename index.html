@@ -172,7 +172,14 @@ moment.style.display = 'flex';
 moment.style.gap = '4px';
 moment.style.alignItems = 'flex-start';
 group.items.forEach(item => {
-  moment.appendChild(buildElement(item, heights[item.size]));
+  const wrap = document.createElement('div');
+  wrap.style.cssText = 'flex:1; min-width:0; overflow:hidden;';
+  const el = buildElement(item, heights[item.size]);
+  el.style.width = '100%';
+  el.style.height = heights[item.size] + 'px';
+  el.style.objectFit = 'cover';
+  wrap.appendChild(el);
+  moment.appendChild(wrap);
 });
         }
 
