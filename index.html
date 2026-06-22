@@ -50,43 +50,46 @@
 
     // ── Height map ───────────────────────────────────────────────
     const heights = { s: 210, m: 400, l: 600 };
+    const sizeKeys = Object.keys(heights); // ['s', 'm', 'l']
 
     // ── Media list ───────────────────────────────────────────────
+    // Note: 'size' removed — each item now gets a random size at render time.
+    // 'aspect' stays fixed since it reflects the image's real proportions.
     const media = [
       // 1:1
-      { file: 'galileo-logo-spin.mp4',                 type: 'video', size: 's', aspect: '1:1' },
-      { file: 'stocksy-detail-2025.jpg',               type: 'image', size: 'm', aspect: '1:1' },
-      { file: 'working-with-the-machine.mp4',          type: 'video', size: 'l', aspect: '1:1' },
+      { file: 'galileo-logo-spin.mp4',                 type: 'video', aspect: '1:1' },
+      { file: 'stocksy-detail-2025.jpg',               type: 'image', aspect: '1:1' },
+      { file: 'working-with-the-machine.mp4',          type: 'video', aspect: '1:1' },
 
       // 4:5
-      { file: 'clarie-lightning-strike-campaign.jpg',  type: 'image', size: 'l', aspect: '4:5' },
-      { file: 'kindness.jpg',                          type: 'image', size: 'l', aspect: '4:5' },
-      { file: 'uica-live-coverage-2011.jpg',           type: 'image', size: 'm', aspect: '4:5' },
+      { file: 'clarie-lightning-strike-campaign.jpg',  type: 'image', aspect: '4:5' },
+      { file: 'kindness.jpg',                          type: 'image', aspect: '4:5' },
+      { file: 'uica-live-coverage-2011.jpg',           type: 'image', aspect: '4:5' },
 
       // 5:4
-      { file: 'dotform.mp4',                           type: 'video', size: 'm', aspect: '5:4' },
-      { file: 'genesis-motion-design.mp4',             type: 'video', size: 'm', aspect: '5:4' },
-      { file: 'hello-yes.jpg',                         type: 'image', size: 's', aspect: '5:4' },
-      { file: 'morgan-stanley.jpg',                    type: 'image', size: 'm', aspect: '5:4' },
-      { file: 'nuon-business-cards.jpg',               type: 'image', size: 's', aspect: '5:4' },
-      { file: 'omada.jpg',                             type: 'image', size: 'm', aspect: '5:4' },
-      { file: 'rip-roar.jpg',                          type: 'image', size: 'l', aspect: '5:4' },
-            { file: 'rogers-homepage-2017.jpg',              type: 'image', size: 'm', aspect: '5:4' },
-      { file: 'steelcase-360-magazine.jpg',            type: 'image', size: 'm', aspect: '5:4' },
-      { file: 'stocksy-2025.jpg',                      type: 'image', size: 'l', aspect: '5:4' },
-      { file: 'tuyyo.jpg',                             type: 'image', size: 's', aspect: '5:4' },
-      { file: 'uica-live-coverage-2004.jpg',           type: 'image', size: 'm', aspect: '5:4' },
+      { file: 'dotform.mp4',                           type: 'video', aspect: '5:4' },
+      { file: 'genesis-motion-design.mp4',             type: 'video', aspect: '5:4' },
+      { file: 'hello-yes.jpg',                         type: 'image', aspect: '5:4' },
+      { file: 'morgan-stanley.jpg',                    type: 'image', aspect: '5:4' },
+      { file: 'nuon-business-cards.jpg',               type: 'image', aspect: '5:4' },
+      { file: 'omada.jpg',                             type: 'image', aspect: '5:4' },
+      { file: 'rip-roar.jpg',                          type: 'image', aspect: '5:4' },
+      { file: 'rogers-homepage-2017.jpg',              type: 'image', aspect: '5:4' },
+      { file: 'steelcase-360-magazine.jpg',            type: 'image', aspect: '5:4' },
+      { file: 'stocksy-2025.jpg',                      type: 'image', aspect: '5:4' },
+      { file: 'tuyyo.jpg',                             type: 'image', aspect: '5:4' },
+      { file: 'uica-live-coverage-2004.jpg',           type: 'image', aspect: '5:4' },
 
       // 16:9
-      { file: 'checkout-loop.mp4',                     type: 'video', size: 'm', aspect: '16:9' },
-      { file: 'convoso.jpg',                           type: 'image', size: 'm', aspect: '16:9' },
-      { file: 'galileo-web.mp4',                       type: 'video', size: 'l', aspect: '16:9' },
-      { file: 'joseph-jeup.jpg',                       type: 'image', size: 'm', aspect: '16:9' },
-      { file: 'rogers-design-system.jpg',              type: 'image', size: 'm', aspect: '16:9' },
-      { file: 'san-francisco-beautiful.jpg',           type: 'image', size: 'l', aspect: '16:9' },
-      { file: 'steelcase-360.mp4',                     type: 'video', size: 'l', aspect: '16:9' },
-      { file: 'stocksy-mobile-2025.jpg',               type: 'image', size: 's', aspect: '16:9' },
-      { file: 'tetrate.jpg',                           type: 'image', size: 'm', aspect: '16:9' },
+      { file: 'checkout-loop.mp4',                     type: 'video', aspect: '16:9' },
+      { file: 'convoso.jpg',                           type: 'image', aspect: '16:9' },
+      { file: 'galileo-web.mp4',                       type: 'video', aspect: '16:9' },
+      { file: 'joseph-jeup.jpg',                       type: 'image', aspect: '16:9' },
+      { file: 'rogers-design-system.jpg',              type: 'image', aspect: '16:9' },
+      { file: 'san-francisco-beautiful.jpg',           type: 'image', aspect: '16:9' },
+      { file: 'steelcase-360.mp4',                     type: 'video', aspect: '16:9' },
+      { file: 'stocksy-mobile-2025.jpg',               type: 'image', aspect: '16:9' },
+      { file: 'tetrate.jpg',                           type: 'image', aspect: '16:9' },
     ];
 
     // ── Left offset positions (% of container) ──────────────────
@@ -112,6 +115,12 @@
 
     function randBetween(min, max) {
       return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+
+    // Assign a random size to an item, returning a new object
+    // (keeps the original media list untouched between renders)
+    function withRandomSize(item) {
+      return { ...item, size: pick(sizeKeys) };
     }
 
     // Calculate pixel width from height and aspect ratio
@@ -179,7 +188,8 @@
       const work = document.getElementById('work');
       work.innerHTML = '';
 
-      const shuffled = shuffle(media);
+      // Shuffle order, then assign a fresh random size to every item
+      const shuffled = shuffle(media).map(withRandomSize);
       const groups = buildGroups(shuffled);
 
       groups.forEach(group => {
