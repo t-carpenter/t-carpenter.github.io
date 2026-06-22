@@ -49,7 +49,7 @@
     };
 
     // ── Height map ───────────────────────────────────────────────
-    const heights = { s: 300, m: 400, l: 600 };
+    const heights = { s: 210, m: 400, l: 600 };
     const sizeKeys = Object.keys(heights); // ['s', 'm', 'l']
 
     // ── Media list ───────────────────────────────────────────────
@@ -183,6 +183,13 @@
       return (wA + wB + 4) <= availableW; // 4px gap
     }
 
+    // ── Check if a single image would overflow the page ──────────
+    function soloFits(item, offsetPct) {
+      const containerW = document.getElementById('work').offsetWidth;
+      const availableW = containerW * (1 - offsetPct / 100);
+      return calcWidth(item) <= availableW;
+    }
+
     // ── Render ───────────────────────────────────────────────────
     function render() {
       const work = document.getElementById('work');
@@ -198,7 +205,8 @@
 
         if (group.type === 'solo') {
           const item = group.items[0];
-          const offset = pick(offsets);
+          const safeOffsets = offsets.filter(o => soloFits(item, o));
+          const offset = safeOffsets.length > 0 ? pick(safeOffsets) : 0;
           moment.style.paddingLeft = `${offset}%`;
           moment.style.marginBottom = `${randBetween(gapMin, gapMax)}px`;
           moment.appendChild(buildElement(item));
